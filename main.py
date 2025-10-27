@@ -7,7 +7,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 OPENAI_API_KEY = "sk-...-XEA"
-TELEGRAM_BOT_TOKEN = "8442464558:AAFKMdh1Otl3OqFq1T9mZkwSZGd9p1Idx4o"
+TELEGRAM_BOT_TOKEN = "8442464558:AAGXI-ZNeSjncXSWbDJ8e_UeQApitHDmsZw"
 
 openai.api_key = OPENAI_API_KEY
 
