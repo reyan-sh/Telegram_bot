@@ -1,3 +1,19 @@
+from flask import Flask
+from threading import Thread
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive"
+
+def run():
+    app.run(host='0.0.0.0', port=8080)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
 # 🧠 Telegram AI Bot by Reyansh
 # 24x7 Free Open-source AI Auto-Reply Bot 🚀
 
@@ -37,6 +53,7 @@ def main():
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
     print("🤖 Bot is running 24×7...")
+    keep_alive()
     app.run_polling()
 
 if __name__ == "__main__":
