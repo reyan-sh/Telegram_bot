@@ -33,7 +33,7 @@ def webhook():
             import asyncio
 asyncio.run(bot.send_message(chat_id=update.message.chat_id, text=reply))
         except Exception as e:
-            asyncio.run(bot.send_message(chat_id=update.message.chat_id, text=f"⚠️ Error: {e}"))
+await bot.send_message(chat_id=update.message.chat_id, text=f"⚠️ Error: {e}")
 
     return "ok", 200
 
