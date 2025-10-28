@@ -57,7 +57,9 @@ def main():
     if __name__ == "__main__":
         from threading import Thread
         Thread(target=run).start()
-        app.run_polling()
+        if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)
     Thread(target=app.run_polling).start()
     from flask import Flask
     alive = Flask(__name__)
