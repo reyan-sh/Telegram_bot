@@ -54,7 +54,17 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
     print("🤖 Bot is running 24×7...")
     keep_alive()
-    app.run_polling()
+    if __name__ == "__main__":
+    from threading import Thread
+    Thread(target=app.run_polling).start()
+    from flask import Flask
+    alive = Flask(__name__)
+
+    @alive.route('/')
+    def home():
+        return "Bot is Alive"
+
+    alive.run(host="0.0.0.0", port=10000)
 
 if __name__ == "__main__":
     main()
