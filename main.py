@@ -57,12 +57,12 @@ def main():
     if __name__ == "__main__":
         from threading import Thread
         Thread(target=run).start()
-        if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 10000))
-    app.run(host='0.0.0.0', port=port)
-    Thread(target=app.run_polling).start()
-    from flask import Flask
-    alive = Flask(__name__)
+    if __name__ == "__main__":
+        port = int(os.environ.get('PORT', 10000))
+        app.run(host='0.0.0.0', port=port)
+        Thread(target=app.run_polling).start()
+        from flask import Flask
+        alive = Flask(__name__)
 
     @alive.route('/')
     def home():
