@@ -6,6 +6,16 @@ app = Flask('')
 @app.route('/')
 def home():
     return "Bot is alive"
+    from flask import request
+from telegram import Bot, Update
+
+bot = Bot(token=TELEGRAM_BOT_TOKEN)
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    update = Update.de_json(request.get_json(force=True), bot)
+    app.bot_instance.process_update(update)
+    return "ok", 200
 
 def run():
     app.run(host='0.0.0.0', port=8080)
@@ -50,6 +60,7 @@ async def chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
 # 🚀 Main function
 def main():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
+    app.bot_instance = app
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat))
     print("🤖 Bot is running 24×7...")
