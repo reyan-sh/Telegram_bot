@@ -56,6 +56,8 @@ def main():
     keep_alive()
     if __name__ == "__main__":
     from threading import Thread
+    Thread(target=run).start()
+    app.run_polling()
     Thread(target=app.run_polling).start()
     from flask import Flask
     alive = Flask(__name__)
