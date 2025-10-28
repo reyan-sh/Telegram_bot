@@ -1,20 +1,19 @@
-from flask import Flask
+from flask import Flask, request
 from threading import Thread
+from telegram import Bot, Update
 
 app = Flask('')
+TELEGRAM_BOT_TOKEN = "8442464558:AAFqTZNiSPLx1R4iBelpWB_NRoJ4XQJrM-8"
+bot = Bot(token=TELEGRAM_BOT_TOKEN)
 
 @app.route('/')
 def home():
     return "Bot is alive"
-    from flask import request
-from telegram import Bot, Update
-
-bot = Bot(token=TELEGRAM_BOT_TOKEN)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
     update = Update.de_json(request.get_json(force=True), bot)
-    app.bot_instance.process_update(update)
+    bot.process_new_updates([update])
     return "ok", 200
 
 def run():
