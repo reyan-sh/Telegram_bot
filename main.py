@@ -30,9 +30,10 @@ def webhook():
                 messages=[{"role": "user", "content": user_text}]
             )
             reply = response.choices[0].message.content
-            bot.send_message(chat_id=update.message.chat_id, text=reply)
+            import asyncio
+asyncio.run(bot.send_message(chat_id=update.message.chat_id, text=reply))
         except Exception as e:
-            bot.send_message(chat_id=update.message.chat_id, text=f"⚠️ Error: {e}")
+            asyncio.run(bot.send_message(chat_id=update.message.chat_id, text=f"⚠️ Error: {e}"))
 
     return "ok", 200
 
